@@ -1,48 +1,104 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-image: url(yes.gif); /* Replace with the path to your universe background image */
+    background-image: url(adobe-illustration-motion-design.gif); /* Replace with your image URL */
     background-size: cover;
     background-position: center;
-    color: #816db0;
-}
-.login-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-h2 {
-    text-align: center;
-}
-form {
     display: flex;
-    flex-direction: column;
-}
-input[type="text"], input[type="password"] {
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed;
 }
 
-.card-body {
-    color: #ffffff;
+.login-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
 }
 
-.btn-primary {
-    background-color: #4e2a84; /* A deep purple, reminiscent of the universe's vastness */
+.login-form h2 {
+    color: #333;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    position: absolute;
+    top: -14px;
+    left: 10px;
+    background-color: #fff;
+    padding: 0 5px;
+    font-size: 14px;
+    color: #007bff;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
 }
 
-.btn-primary:hover {
-    background-color: #3e1f68;
+button:hover {
+    background-color: #0056b3;
 }
 
-a {
-    color: #ccb7ff; /* A lighter purple for links, for a bit of contrast */
+/* Adding a little animation to the container */
+.login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.welcome-message h1 {
+    text-align: center;
+    color: #007bff; /* Match this color to your design */
+    margin-bottom: 20px; /* Adjust spacing as needed */
+    font-size: 28px; /* Adjust font size as needed */
+    font-weight: normal; /* Keeps the text less bold and more welcoming */
+}
+/* Existing CSS rules */
+
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
 }
 
-a:hover {
-    color: #afa2ff;
-    text-decoration: underline;
+.forgot-password a {
+    color: #007bff; /* Adjust the color to fit your design */
+    text-decoration: none; /* Optional: removes the underline */
+}
+
+.forgot-password a:hover {
+    text-decoration: underline; /* Optional: adds underline on hover for clarity */
 }
