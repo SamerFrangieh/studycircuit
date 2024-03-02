@@ -127,4 +127,4 @@ http.createServer(function(request, response) {
 
   console.log("Server Running at PORT 3000  CNTL-C to quit")
   console.log("To Test")
-  console.log("http://localhost:3000/index.html")
+  console.log("http://localhost:3000/studycircuit.html")
