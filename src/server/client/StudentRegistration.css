@@ -1,19 +1,23 @@
 body {
-    background-color: #36393f;
-    /* A light grey background */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .container {
-    background-color: lightgrey;
-    align-content: center;
-    /* White background for the form container */
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Adding some shadow to the container */
-    margin: 20px;
-  }
+  background-color: #36393f;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 100vh; /* Make the body take up the full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+.container {
+  background-color: lightgrey;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px; /* Consider adjusting or removing this to better center your container */
+  /* Add a max-width or width if you want to control the width of the container */
+  max-width: 600px; /* Example width */
+  width: 100%; /* Ensures container width is responsive */
+}
   
   h2 {
     color: #333;
