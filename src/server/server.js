@@ -39,31 +39,6 @@ http.createServer(function(request, response) {
     console.log("REQUEST: " + ROOT_DIR + urlObj.pathname)
     console.log("METHOD: " + request.method)
 
-    
-    //attached event handlers to collect the message data remain unchanged
-
-    request.on("end", function() {
-        // If it is a POST request to the registration endpoint, call the handleRegistration function
-        if (request.method === "POST" && urlObj.pathname === "/register") {
-            handleRegistration(request, response);
-        } else if (request.method == "GET") {
-            // Handle GET requests as static file requests
-            var filePath = ROOT_DIR + urlObj.pathname;
-            if (urlObj.pathname === "/") filePath = ROOT_DIR + "/studycircuit.html";
-
-            fs.readFile(filePath, function(err, data) {
-                if (err) {
-                    console.log("ERROR: " + JSON.stringify(err));
-                    response.writeHead(404);
-                    response.end(JSON.stringify(err));
-                    return;
-                }
-                response.writeHead(200, { "Content-Type": get_mime(filePath) });
-                response.end(data);
-            });
-        }
-    });
-
     var receivedData = ""
 
     //attached event handlers to collect the message data
