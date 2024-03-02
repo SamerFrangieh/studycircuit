@@ -11,8 +11,9 @@ The Student Collaboration Platform is a web-based application designed to match 
 - [Bootstrap](https://getbootstrap.com/)
 - Hosted on [GitHub Pages](https://pages.github.com/)
 
-## Getting Started
+## Our Team
 
-To get a local copy up and running follow these simple steps.
-
-### Prerequisites
+Ibraheem Refai
+Samer Frangieh
+Aly Matrawy
+Malik Maadrani
