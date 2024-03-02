@@ -1,4 +1,4 @@
-// registration.js
+//registration.js
 let temporaryStorage = []; // Temporary storage for registration data
 
 function handleRegistration(request, response) {
@@ -14,20 +14,17 @@ function handleRegistration(request, response) {
             console.log("Registration Data Received:", formData);
             temporaryStorage.push(formData); // Store data temporarily
 
+            console.log("Temporary Storage:", temporaryStorage); // Ensure this is within the 'end' event callback
+
             // Respond to client
             response.writeHead(200, { "Content-Type": "application/json" });
             response.end(JSON.stringify({ message: "Registration successful" }));
-
-            // Later, you might manipulate and move this data to a database
-            console.log("Temporary Storage:", temporaryStorage);
         } catch (error) {
             console.error("Error processing registration data:", error);
             response.writeHead(500, { "Content-Type": "application/json" });
             response.end(JSON.stringify({ error: "Internal Server Error" }));
         }
     });
-
-    console.log("Temporary storage:" + temporaryStorage);
 }
 
 module.exports = { handleRegistration };
