@@ -1,1 +1,57 @@
-/* css for student registration */
+body {
+    background-color: #36393f;
+    /* A light grey background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .container {
+    background-color: lightgrey;
+    /* White background for the form container */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Adding some shadow to the container */
+    margin: 20px;
+  }
+  
+  h2 {
+    color: #333;
+    /* Darker font color for the heading */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    color: #555;
+    /* Slightly lighter font color for labels */
+  }
+  
+  .btn-primary {
+    background-color: #0056b3;
+    /* Custom primary button color */
+    border-color: #004085;
+    /* Custom border color for the primary button */
+  }
+  
+  .btn-primary:hover {
+    background-color: #003d73;
+    /* Darker shade on hover for the primary button */
+    border-color: #003157;
+  }
+  
+  /* Custom styles for input and select elements to slightly alter appearance */
+  .form-control {
+    border-radius: 4px;
+    /* Slightly round the edges of form controls */
+    border: 1px solid #ced4da;
+    /* Default Bootstrap border color */
+  }
+  
+  /* Styling for the select element when multiple is enabled, making it visually more appealing */
+  .form-control[multiple] {
+    height: auto;
+    /* Adjust height automatically based on the number of options */
+    padding: 5px;
+    /* Add some padding inside the select box */
+  }
