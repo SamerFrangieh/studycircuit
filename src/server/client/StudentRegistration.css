@@ -1,5 +1,5 @@
 body {
-  background-image: url(yes.gif);
+  background-color: #36393f;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center content horizontally */
