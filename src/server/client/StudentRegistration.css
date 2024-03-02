@@ -6,6 +6,7 @@ body {
   
   .container {
     background-color: lightgrey;
+    align-content: center;
     /* White background for the form container */
     padding: 10px;
     border-radius: 10px;
