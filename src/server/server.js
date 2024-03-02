@@ -1,8 +1,9 @@
 //Server Code
 const http = require("http") //need to http
-const fs = require("fs") //need to read and write  files
+const fs = require("fs") //need to read and write files
 const url = require("url") //to parse url strings
-const { handleRegistration } = require("./registration"); // Import the registration handler
+
+const { handleRegistration } = require("./registration");
 
 const ROOT_DIR = "client" //dir to serve static files from
 
@@ -34,6 +35,7 @@ function get_mime(filename) {
 
 http.createServer(function(request, response) {
     var urlObj = url.parse(request.url, true, false)
+
     console.log("\n============================")
     console.log("PATHNAME: " + urlObj.pathname)
     console.log("REQUEST: " + ROOT_DIR + urlObj.pathname)
@@ -51,8 +53,8 @@ http.createServer(function(request, response) {
       //Handle the client POST requests
       //console.log('received data: ', receivedData);
 
-      //If it is a POST request then we will check the data.
-      if (request.method === "POST") {
+    //If it is a POST request then we will check the data.
+    if (request.method === "POST") {
         //Do this for all POST messages
         var dataObj = JSON.parse(receivedData)
         console.log("received data object: ", dataObj)
@@ -62,52 +64,23 @@ http.createServer(function(request, response) {
         returnObj.text = "NOT FOUND: " + dataObj.text
       }
 
-      if (request.method === "POST" && urlObj.pathname === "/song") {
-        //a POST request to fetch a song
-        //look for song file in songs directory based on song title
-        let songFile = `songs/${dataObj.text.trim()}.txt`
-        console.log(`Looking for song file: ${songFile}`)
-        fs.exists(songFile, (exists) => {
-          if(exists){
-            console.log(songFile + '<--EXISTS')
-            //Found the song file
-            fs.readFile(songFile, function(err, data) {
-              //Read song data file and send lines and chords to client
-              if (err) {
-                returnObj.text = "FILE READ ERROR"
-                response.writeHead(200, { "Content-Type": MIME_TYPES["json"] })
-                response.end(JSON.stringify(returnObj))
-              } else {
-                var fileLines = data.toString().split("\n")
-                //get rid of any return characters
-                for (i in fileLines)
-                  fileLines[i] = fileLines[i].replace(/(\r\n|\n|\r)/gm, "")
-                returnObj.text = songFile
-                returnObj.songLines = fileLines
-                returnObj.filePath = songFile
-                response.writeHead(200, { "Content-Type": MIME_TYPES["json"] })
-                response.end(JSON.stringify(returnObj))
-              }
-            })
-          }
-          else{
-               console.log(songFile + '<--DOES NOT EXIST')
-               response.writeHead(200, { "Content-Type": MIME_TYPES["json"] })
-               response.end(JSON.stringify(returnObj)) //send just the JSON object
-          }
-        })
 
-      } else if (request.method === "POST") {
+     if (request.method === "POST" && urlObj.pathname === "/register") {
+        // Direct POST /register requests to the handleRegistration function
+        handleRegistration(request, response);
+     }
+     else if (request.method === "POST") {
         //Not found or unknown POST request
         var returnObj = {};
         returnObj.text = "UNKNOWN REQUEST"
         response.writeHead(200, { "Content-Type": MIME_TYPES["json"] })
         response.end(JSON.stringify(returnObj))
 
-      } else if (request.method == "GET") {
+      } 
+      else if (request.method == "GET") {
         //handle GET requests as static file requests
         var filePath = ROOT_DIR + urlObj.pathname
-        if (urlObj.pathname === "/") filePath = ROOT_DIR + "/studycircuit.html"
+        if (urlObj.pathname === "/")  { filePath = ROOT_DIR + "/studycircuit.html" }
 
         fs.readFile(filePath, function(err, data) {
           if (err) {
@@ -122,6 +95,11 @@ http.createServer(function(request, response) {
           response.end(data)
         })
       }
+      else {
+        // Handle unsupported methods
+        response.writeHead(405);
+        response.end(JSON.stringify({error: "Method Not Allowed"}));
+    }
     })
   })
   .listen(3000)
