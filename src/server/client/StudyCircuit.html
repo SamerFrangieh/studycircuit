@@ -4,18 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Study Circuit</title>
-    <link rel="stylesheet" href="StudyCircuit.css">
+    <link ref="stylesheet" href="StudentRegistration.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Welcome to Study Circuit</h2>
-        <form action="login-endpoint" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login">
-        </form>
-        <div class="register-link">
-            Don't have an account? <a href="StudentRegistration.html">Register here</a>.
+    <div class="container d-flex align-items-center justify-content-center vh-100">
+        <div class="card login-card shadow">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Login to Universe Circuit</h2>
+                <form action="login-endpoint" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+                <div class="text-center mt-3">
+                    Don't have an account? <a href="StudentRegistration.html">Register here</a>.
+                </div>
+            </div>
         </div>
     </div>
 </body>
