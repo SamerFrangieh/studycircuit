@@ -91,8 +91,17 @@
           if (checkedCheckboxes.length < requiredNumber) {
               alert('You can select a maximum of ' + requiredNumber + ' interests.');
               e.target.checked = false; // Deselect the last checked box
+              return;
           }
       });
+
+      document.getElementById('submitForm').addEventListener('click', function(e) {
+      const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
+      if (checkedCheckboxes.length !== 3) {
+        alert('Please select exactly 3 interests before submitting.');
+        e.preventDefault(); // Prevent form submission
+      }
+    });
       </script>
       <div class="form-group">
         <label for="major">Major</label>
