@@ -34,102 +34,65 @@
       <div class="form-group">
         <label for="languages">Language Other Than English</label>
         <select  class="form-control" id="languages">
-                    <option>Spanish</option>
-                    <option>Mandarin</option>
-                    <option>Arabic</option> 
                     <option>I don't know any other languages</option><!-- Add other languages as needed -->
         </select>
       </div>
       <div class="form-group">
         <label>Choose Up To Three Interests</label>
         <div id="interestsSelection">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Video Games" id="interest1">
-            <label class="form-check-label" for="interest1">Video Games</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Books" id="interest2">
-            <label class="form-check-label" for="interest2">Books</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Gym" id="interest3">
-            <label class="form-check-label" for="interest3">Gym</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Sports" id="interest4">
-            <label class="form-check-label" for="interest4">Sports</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Cars" id="interest5">
-            <label class="form-check-label" for="interest5">Cars</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Travelling" id="interest6">
-            <label class="form-check-label" for="interest6">Travelling</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Music" id="interest7">
-            <label class="form-check-label" for="interest7">Music</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Movies" id="interest8">
-            <label class="form-check-label" for="interest8">Movies</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Fashion" id="interest9">
-            <label class="form-check-label" for="interest9">Fashion</label>
-          </div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
           <!-- Add other interests as needed -->
         </div>
       </div>
       
       <script>
         document.getElementById('interestsSelection').addEventListener('change', function(e) {
-          const requiredNumber = 3;
-          const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
-          
-          if (checkedCheckboxes.length < requiredNumber) {
-              alert('You can select a maximum of ' + requiredNumber + ' interests.');
-              e.target.checked = false; // Deselect the last checked box
-          }
-      });
+            const requiredNumber = 3;
+            const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
+            
+            // Alert and prevent new selections if more than 3 are attempted
+            if (checkedCheckboxes.length > requiredNumber) {
+                alert('You can only select exactly ' + requiredNumber + ' interests.');
+                e.target.checked = false; // Deselect the last checked box
+                return; // Stop further execution
+            }
+        });
+        
+        // Example submission logic (adjust as necessary for your application)
+        document.getElementById('submitForm').addEventListener('click', function(e) {
+            const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
+            if (checkedCheckboxes.length !== 3) {
+                alert('Please select exactly 3 interests before submitting.');
+                e.preventDefault(); // Prevent form submission
+            }
+        });
       </script>
       <div class="form-group">
         <label for="major">Major</label>
-        <select class="form-control" id="major">
-                    <option>Computer Science</option>
-                    <option>Engineering</option>
-                    <option>Mathematics</option>
-                    <!-- Add other majors as needed -->
-                </select>
+        <select class="form-control" id="major"></select>
       </div>
       <div class="form-group">
         <label>Courses Currently Enrolled In:</label>
         <div id="courseSelection">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="COMP1405" id="course1">
-            <label class="form-check-label" for="course1">COMP1405</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="COMP1406" id="course2">
-            <label class="form-check-label" for="course2">COMP1406</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="COMP2804" id="course3">
-            <label class="form-check-label" for="course3">COMP2804</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="COMP3000" id="course4">
-            <label class="form-check-label" for="course4">COMP3000</label>
-          </div>
-          <!-- Add other courses as needed -->
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
+          <div class="form-check"></div>
         </div>
       </div>
       <script>
         document.getElementById('courses').addEventListener('change', function() {
           var selectedOptions = this.selectedOptions;
           var requiredNumber = 5;
-          if (selectedOptions.length < requiredNumber) {
+          if (selectedOptions.length !== requiredNumber) {
               // Deselect the last selected option if the maximum is exceeded
               selectedOptions[selectedOptions.length - 1].selected = false;
               alert('You can select a maximum of ' + requiredNumber + ' courses.');
@@ -149,6 +112,62 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="eventListeners.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to fetch and populate select options
+        const populateSelectOptions = async (endpoint, selectElementId) => {
+            try {
+                const response = await fetch(`http://localhost:3001/api/${endpoint}`);
+                const data = await response.json();
+                const selectElement = document.getElementById(selectElementId);
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item;
+                    option.textContent = item;
+                    selectElement.appendChild(option);
+                });
+            } catch (error) {
+                console.error(`Error fetching ${endpoint}:`, error);
+            }
+        };
+    
+        // Function to fetch and populate checkboxes
+        const populateCheckboxes = async (endpoint, containerElementId) => {
+            try {
+                const response = await fetch(`http://localhost:3001/api/${endpoint}`);
+                const data = await response.json();
+                const containerElement = document.getElementById(containerElementId);
+                data.forEach((item, index) => {
+                    // Create checkbox
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = `${endpoint}${index}`;
+                    checkbox.value = item;
+    
+                    // Create label
+                    const label = document.createElement('label');
+                    label.htmlFor = `${endpoint}${index}`;
+                    label.textContent = item;
+    
+                    // Append to container
+                    containerElement.appendChild(checkbox);
+                    containerElement.appendChild(label);
+                    containerElement.appendChild(document.createElement('br'));
+                });
+            } catch (error) {
+                console.error(`Error fetching ${endpoint}:`, error);
+            }
+        };
+    
+        // Populate languages, majors
+        populateSelectOptions('languages', 'languages');
+        populateSelectOptions('majors', 'major');
+    
+        // Populate interests, courses with checkboxes
+        populateCheckboxes('interests', 'interestsSelection');
+        populateCheckboxes('courses', 'courseSelection');
+    });
+    </script>    
 </body>
 
 </html>
