@@ -1,20 +1,23 @@
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://admin:lPug6yO397y6h9PR@studycircuit.wmxqxd5.mongodb.net/?retryWrites=true&w=majority&appName=studycircuit";
 
-const credentials = url(certificate.pem);
-
-const client = new MongoClient('mongodb+srv://studycircuit.wmxqxd5.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=studycircuit', {
-  tlsCertificateKeyFile: credentials,
-  serverApi: ServerApiVersion.v1
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
 });
 
 async function run() {
   try {
+    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
-    const database = client.db("testDB");
-    const collection = database.collection("testCol");
-    const docCount = await collection.countDocuments({});
-    console.log(docCount);
-    // perform actions using client
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
