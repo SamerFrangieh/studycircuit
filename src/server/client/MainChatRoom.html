@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Display Registrations</title>
-        <link rel="stylesheet" href="MainChatRoom.css">
-        <h2>You are logged in as:</h2>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Display Registrations</title>
+    <link rel="stylesheet" href="MainChatRoom.css">
+</head>
+<body>
+    <h2>View Your Logic Information:</h2>
+    
+    <button type="button" class="btn-info" onclick="revealInfo()">Click to reveal your info</button>
+    <div id="registrationData"></div>
 
-        <!--<button id="loadRegistrations">Load Registrations</button>
-        <div id="registrationData"></div>-->
-        
-        <script type="text/javascript" src="displayRegistrations.js"></script>
+    <script src="displayRegistrations.js"></script>
 
-        <form id="loadInfo">
-            <button type="load" class="userInfo">Show Your Info</button>
-            <div class="displayInfo">
-                <a href="StudyCircuit.html"><br>Logout</a>
-            </div>
-        </form>
-        
-        </body>
+    <div class="displayInfo" style="margin-top: 20px;">
+        <a href="StudyCircuit.html" class="btn btn-logout">Logout</a>
+    </div>
+    
+</body>
 </html>
