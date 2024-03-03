@@ -85,23 +85,25 @@
       
       <script>
         document.getElementById('interestsSelection').addEventListener('change', function(e) {
-          const requiredNumber = 3;
-          const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
-          
-          if (checkedCheckboxes.length < requiredNumber) {
-              alert('You can select a maximum of ' + requiredNumber + ' interests.');
-              e.target.checked = false; // Deselect the last checked box
-              return;
-          }
-      });
-
-      document.getElementById('submitForm').addEventListener('click', function(e) {
-      const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
-      if (checkedCheckboxes.length !== 3) {
-        alert('Please select exactly 3 interests before submitting.');
-        e.preventDefault(); // Prevent form submission
-      }
-    });
+            const requiredNumber = 3;
+            const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
+            
+            // Alert and prevent new selections if more than 3 are attempted
+            if (checkedCheckboxes.length > requiredNumber) {
+                alert('You can only select exactly ' + requiredNumber + ' interests.');
+                e.target.checked = false; // Deselect the last checked box
+                return; // Stop further execution
+            }
+        });
+        
+        // Example submission logic (adjust as necessary for your application)
+        document.getElementById('submitForm').addEventListener('click', function(e) {
+            const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
+            if (checkedCheckboxes.length !== 3) {
+                alert('Please select exactly 3 interests before submitting.');
+                e.preventDefault(); // Prevent form submission
+            }
+        });
       </script>
       <div class="form-group">
         <label for="major">Major</label>
