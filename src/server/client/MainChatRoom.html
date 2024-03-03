@@ -7,23 +7,16 @@
     <link rel="stylesheet" href="MainChatRoom.css">
 </head>
 <body>
-    <h2>You are logged in as:</h2>
+    <h2>View Your Logic Information:</h2>
+    
+    <button id="loadRegistrations">Click to reveal your info</button>
     <div id="registrationData"></div>
-
+    
     <script src="displayRegistrations.js"></script>
-    <script>
-        // Assuming your displayRegistrations.js defines a function like loadRegistrations
-        // Directly call that function here to execute it as soon as the script is loaded
-        if (typeof loadRegistrations === 'function') {
-            loadRegistrations();
-        }
-    </script>
 
-    <form id="loadInfo">
-        <div class="displayInfo">
-            <a href="StudyCircuit.html"><br>Logout</a>
-        </div>
-    </form>
-
+    <div class="displayInfo" style="margin-top: 20px;">
+        <a href="StudyCircuit.html" class="btn btn-logout">Logout</a>
+    </div>
+    
 </body>
 </html>
