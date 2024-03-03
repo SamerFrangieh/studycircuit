@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const credentials = '<path_to_certificate>'
+const credentials = url(certificate.pem);
 
 const client = new MongoClient('mongodb+srv://studycircuit.wmxqxd5.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=studycircuit', {
   tlsCertificateKeyFile: credentials,
