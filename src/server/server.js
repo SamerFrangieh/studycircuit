@@ -2,12 +2,13 @@
 const http = require("http") //need to http
 const fs = require("fs") //need to read and write files
 const url = require("url") //to parse url strings
+const path = require("path")
 
 
 const { handleRegistration, temporaryStorage } = require("./registration");
 const { handleLogin } = require("./login");
 
-const ROOT_DIR = "client" //dir to serve static files from
+const ROOT_DIR = path.join(__dirname, "client") //dir to serve static files from
 
 const MIME_TYPES = {
   css: "text/css",
@@ -77,7 +78,7 @@ http.createServer(function(request, response) {
       } 
     else if (request.method === "GET") {
         // Handle static file serving for GET requests
-        var filePath = ROOT_DIR + (urlObj.pathname === "/" ? "/studycircuit.html" : urlObj.pathname);
+        var filePath = ROOT_DIR + (urlObj.pathname === "/" ? "/StudyCircuit.html" : urlObj.pathname);
 
         fs.readFile(filePath, function(err, data) {
             if (err) {
