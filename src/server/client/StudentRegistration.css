@@ -9,15 +9,12 @@ body {
   font-family: 'Open Sans', Arial, sans-serif;
 }
 
-.container {
-  background-color: lightgrey;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px; /* Consider adjusting or removing this to better center your container */
-  /* Add a max-width or width if you want to control the width of the container */
-  max-width: 600px; /* Example width */
-  width: 100%; /* Ensures container width is responsive */
+.-container{
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px 60px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
   
   h2 {
