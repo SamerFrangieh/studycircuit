@@ -1,23 +1,22 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const sqlite3 = require('sqlite3').verbose();
 
-const credentials = url(certificate.pem);
-
-const client = new MongoClient('mongodb+srv://studycircuit.wmxqxd5.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=studycircuit', {
-  tlsCertificateKeyFile: credentials,
-  serverApi: ServerApiVersion.v1
-});
-
-async function run() {
-  try {
-    await client.connect();
-    const database = client.db("testDB");
-    const collection = database.collection("testCol");
-    const docCount = await collection.countDocuments({});
-    console.log(docCount);
-    // perform actions using client
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+// Connect to a database (or create it if it doesn't exist)
+let db = new sqlite3.Database('./mydb.db', (err) => {
+  if (err) {
+    console.error('Error opening database', err.message);
+  } else {
+    console.log('Connected to the SQLite database.');
+    db.run(`CREATE TABLE IF NOT EXISTS students (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL
+        )`, 
+        (err) => {
+            if (err) {
+                console.error('Error creating table', err.message);
+            } else {
+                console.log('Table created or already exists.');
+            }
+        });
   }
-}
-run().catch(console.dir);
+});
