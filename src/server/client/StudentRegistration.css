@@ -9,7 +9,7 @@ body {
   font-family: 'Open Sans', Arial, sans-serif;
 }
 
-.-container{
+.container{
   background-color: rgba(255, 255, 255, 0.95);
   padding: 40px 60px;
   border-radius: 15px;
