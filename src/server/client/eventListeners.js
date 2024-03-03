@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
             email: document.getElementById('email').value,
+            password: document.getElementById('password').value, // Include password here
             languages: Array.from(document.getElementById('languages').selectedOptions).map(option => option.value),
             major: document.getElementById('major').value,
             courses: Array.from(document.getElementById('courses').selectedOptions).map(option => option.value),
