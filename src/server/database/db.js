@@ -1,11 +1,12 @@
 //setting the database up 
 
-
+const path = require("path")
 
 function connect() {
   const sqlite3 = require("sqlite3").verbose();
   return new Promise((resolve, reject) => {
-      const db = new sqlite3.Database("./studentdb.db", sqlite3.OPEN_READWRITE, (err) => {
+    const ROOT_DIR = path.join(__dirname, "studentdb.db") //dir to serve static files from
+      const db = new sqlite3.Database(ROOT_DIR, sqlite3.OPEN_READWRITE, (err) => {
           if (err) {
               console.error(err.message);
               reject(err);
@@ -160,6 +161,10 @@ selectAllCourses().then(courses => {
 
 
 
-
-
-
+module.exports = {
+    selectAllLanguages,
+    selectAllMajors,
+    selectAllInterests,
+    selectAllCourses,
+  };
+  

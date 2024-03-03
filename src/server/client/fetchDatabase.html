@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data from Database</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="category" id="languagesContainer"><h2>Languages</h2></div>
+        <div class="category" id="majorsContainer"><h2>Majors</h2></div>
+        <div class="category" id="interestsContainer"><h2>Interests</h2></div>
+        <div class="category" id="coursesContainer"><h2>Courses</h2></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to fetch data from your API and add it to the DOM
+            const fetchDataAndDisplay = (endpoint, containerId) => {
+                fetch(`http://localhost:3001/api/${endpoint}`) // Note the port 3001 for API server
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("API Response:", data); // Add this line
+                        const container = document.getElementById(containerId);
+                        data.forEach(item => {
+                            const div = document.createElement('div');
+                            div.textContent = item; // Adjust based on your API response
+                            container.appendChild(div);
+                        });
+                    })
+                    .catch(error => console.error(`Failed to fetch ${endpoint}:`, error));
+            };
+
+            // Fetch and display data for each category
+            fetchDataAndDisplay('languages', 'languagesContainer');
+            fetchDataAndDisplay('majors', 'majorsContainer');
+            fetchDataAndDisplay('interests', 'interestsContainer');
+            fetchDataAndDisplay('courses', 'coursesContainer');
+        });
+    </script>
+</body>
+</html>
