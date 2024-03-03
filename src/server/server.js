@@ -6,6 +6,7 @@ const url = require("url") //to parse url strings
 
 const { handleRegistration } = require("./registration");
 const { handleLogin } = require("./login");
+const {temporaryStorage } = require("./registration");
 
 const ROOT_DIR = "client" //dir to serve static files from
 
@@ -54,6 +55,7 @@ http.createServer(function(request, response) {
     if (urlObj.pathname === "/getRegistrations") {
         response.writeHead(200, { "Content-Type": "application/json" });
         response.end(JSON.stringify({ registrations: temporaryStorage }));
+        return;
     }
 
     //If it is a POST request then we will check the data.

@@ -2,6 +2,7 @@ document.getElementById('loadRegistrations').addEventListener('click', function(
     fetch('/getRegistrations')
         .then(response => response.json())
         .then(data => {
+            console.log("data" + data);
             const container = document.getElementById('registrationData');
             container.innerHTML = ''; // Clear previous content
             data.registrations.forEach(reg => {
