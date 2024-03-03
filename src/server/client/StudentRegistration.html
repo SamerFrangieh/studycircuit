@@ -38,7 +38,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Choose Up To Three Interests</label>
+        <label>Choose EXACTLY Three Interests</label>
         <div id="interestsSelection">
           <div class="form-check"></div>
           <div class="form-check"></div>
@@ -53,34 +53,12 @@
         </div>
       </div>
       
-      <script>
-        document.getElementById('interestsSelection').addEventListener('change', function(e) {
-            const requiredNumber = 3;
-            const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
-            
-            // Alert and prevent new selections if more than 3 are attempted
-            if (checkedCheckboxes.length > requiredNumber) {
-                alert('You can only select exactly ' + requiredNumber + ' interests.');
-                e.target.checked = false; // Deselect the last checked box
-                return; // Stop further execution
-            }
-        });
-        
-        // Example submission logic (adjust as necessary for your application)
-        document.getElementById('submitForm').addEventListener('click', function(e) {
-            const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
-            if (checkedCheckboxes.length !== 3) {
-                alert('Please select exactly 3 interests before submitting.');
-                e.preventDefault(); // Prevent form submission
-            }
-        });
-      </script>
       <div class="form-group">
         <label for="major">Major</label>
         <select class="form-control" id="major"></select>
       </div>
       <div class="form-group">
-        <label>Courses Currently Enrolled In:</label>
+        <label>EXACTLY Five Courses Currently Enrolled In:</label>
         <div id="courseSelection">
           <div class="form-check"></div>
           <div class="form-check"></div>
@@ -159,15 +137,92 @@
             }
         };
     
-        // Populate languages, majors
-        populateSelectOptions('languages', 'languages');
-        populateSelectOptions('majors', 'major');
+        // // Populate languages, majors
+        // populateSelectOptions('languages', 'languages');
+        // populateSelectOptions('majors', 'major');
     
-        // Populate interests, courses with checkboxes
-        populateCheckboxes('interests', 'interestsSelection');
-        populateCheckboxes('courses', 'courseSelection');
+        // // Populate interests, courses with checkboxes
+        // populateCheckboxes('interests', 'interestsSelection');
+        // populateCheckboxes('courses', 'courseSelection');
     });
-    </script>    
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // Function to fetch and populate select options
+          const populateSelectOptions = async (endpoint, selectElementId) => {
+              try {
+                  const response = await fetch(`http://localhost:3001/api/${endpoint}`);
+                  const data = await response.json();
+                  const selectElement = document.getElementById(selectElementId);
+                  data.forEach(item => {
+                      const option = document.createElement('option');
+                      option.value = item;
+                      option.textContent = item;
+                      selectElement.appendChild(option);
+                  });
+              } catch (error) {
+                  console.error(`Error fetching ${endpoint}:`, error);
+              }
+          };
+      
+          // Function to fetch and populate checkboxes
+          const populateCheckboxes = async (endpoint, containerElementId) => {
+              try {
+                  const response = await fetch(`http://localhost:3001/api/${endpoint}`);
+                  const data = await response.json();
+                  const containerElement = document.getElementById(containerElementId);
+                  data.forEach((item, index) => {
+                      const checkbox = document.createElement('input');
+                      checkbox.type = 'checkbox';
+                      checkbox.id = `${endpoint}${index}`;
+                      checkbox.value = item;
+                      checkbox.name = endpoint; // Added name for easier selection
+                      
+                      const label = document.createElement('label');
+                      label.htmlFor = `${endpoint}${index}`;
+                      label.textContent = item;
+                      
+                      containerElement.appendChild(checkbox);
+                      containerElement.appendChild(label);
+                      containerElement.appendChild(document.createElement('br'));
+                      
+                      // Attach change event listener to each checkbox
+                      checkbox.addEventListener('change', validateForm);
+                  });
+              } catch (error) {
+                  console.error(`Error fetching ${endpoint}:`, error);
+              }
+          };
+      
+          // Populate form fields
+          populateSelectOptions('languages', 'languages');
+          populateSelectOptions('majors', 'major');
+          populateCheckboxes('interests', 'interestsSelection');
+          populateCheckboxes('courses', 'courseSelection');
+      
+          // Form validation logic
+          function validateForm() {
+              const interestsChecked = document.querySelectorAll('#interestsSelection input[type="checkbox"]:checked').length;
+              const coursesChecked = document.querySelectorAll('#courseSelection input[type="checkbox"]:checked').length;
+              const submitButton = document.querySelector('#registrationForm button[type="submit"]');
+      
+              // Enable the submit button only if exactly 3 interests and 5 courses are selected
+              submitButton.disabled = !(interestsChecked === 3 && coursesChecked === 5);
+          }
+      
+          // Attach form submission event listener
+          document.getElementById('registrationForm').addEventListener('submit', function(e) {
+              const interestsChecked = document.querySelectorAll('#interestsSelection input[type="checkbox"]:checked').length;
+              const coursesChecked = document.querySelectorAll('#courseSelection input[type="checkbox"]:checked').length;
+      
+              if (interestsChecked !== 3 || coursesChecked !== 5) {
+                  alert('Please select exactly 3 interests and exactly 5 courses.');
+                  e.preventDefault(); // Prevent form submission
+              }
+          });
+      });
+      </script>
+          
 </body>
 
 </html>
