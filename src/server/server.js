@@ -51,6 +51,11 @@ http.createServer(function(request, response) {
         receivedData += chunk
     })
 
+    if (urlObj.pathname === "/getRegistrations") {
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.end(JSON.stringify({ registrations: temporaryStorage }));
+    }
+
     //If it is a POST request then we will check the data.
     if (request.method === "POST" && urlObj.pathname === "/register") {
         // Handle POST /register requests
