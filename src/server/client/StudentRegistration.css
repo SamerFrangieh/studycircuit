@@ -1,11 +1,11 @@
 body {
-  background-color: #36393f;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex; /* Use flexbox layout */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  height: 100vh; /* Make the body take up the full viewport height */
-  margin: 0; /* Remove default margin */
+  background-image: url(backLand.jpg); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-attachment: fixed;
 }
 
 .container {
