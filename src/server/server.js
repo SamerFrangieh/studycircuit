@@ -76,7 +76,7 @@ http.createServer(function(request, response) {
       } 
     else if (request.method === "GET") {
         // Handle static file serving for GET requests
-        var filePath = ROOT_DIR + (urlObj.pathname === "/" ? "/studycircuit.html" : urlObj.pathname);
+        var filePath = ROOT_DIR + (urlObj.pathname === "/" ? "/StudyCircuit.html" : urlObj.pathname);
 
         fs.readFile(filePath, function(err, data) {
             if (err) {
