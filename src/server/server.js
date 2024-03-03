@@ -2,12 +2,14 @@
 const http = require("http") //need to http
 const fs = require("fs") //need to read and write files
 const url = require("url") //to parse url strings
+const path = require("path")
 
 
 const { handleRegistration } = require("./registration");
 const { handleLogin } = require("./login");
+const {temporaryStorage } = require("./registration");
 
-const ROOT_DIR = "client" //dir to serve static files from
+const ROOT_DIR = path.join(__dirname, "client") //dir to serve static files from
 
 const MIME_TYPES = {
   css: "text/css",
@@ -51,6 +53,12 @@ http.createServer(function(request, response) {
         receivedData += chunk
     })
 
+    if (urlObj.pathname === "/getRegistrations") {
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.end(JSON.stringify({ registrations: temporaryStorage }));
+        return;
+    }
+
     //If it is a POST request then we will check the data.
     if (request.method === "POST" && urlObj.pathname === "/register") {
         // Handle POST /register requests
@@ -71,7 +79,7 @@ http.createServer(function(request, response) {
       } 
     else if (request.method === "GET") {
         // Handle static file serving for GET requests
-        var filePath = ROOT_DIR + (urlObj.pathname === "/" ? "/studycircuit.html" : urlObj.pathname);
+        var filePath = ROOT_DIR + (urlObj.pathname === "/" ? "/StudyCircuit.html" : urlObj.pathname);
 
         fs.readFile(filePath, function(err, data) {
             if (err) {

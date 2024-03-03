@@ -34,4 +34,4 @@ function handleRegistration(request, response) {
     });
 }
 
-module.exports = { handleRegistration };
+module.exports = { handleRegistration, temporaryStorage };
