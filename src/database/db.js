@@ -18,7 +18,7 @@ function connect() {
 
 
 
-
+//get all data 
 
 function selectAllLanguages() {
   return new Promise((resolve, reject) => {
@@ -72,8 +72,60 @@ function selectAllMajors() {
 }
 
 
+function selectAllInterests() {
+  return new Promise((resolve, reject) => {
+      connect().then(db => {
+          if (!db) {
+              console.error("Failed to connect to the database.");
+              reject("Failed to connect to the database.");
+              return;
+          }
+
+          const selectQuery = "SELECT name FROM Interests";
+
+          db.all(selectQuery, [], (err, rows) => {
+              if (err) {
+                  console.error(err.message);
+                  reject(err);
+              } else {
+                  const array = rows.map(row => row.name);
+                  resolve(array);
+              }
+              db.close();
+          });
+      }).catch(reject);
+  });
+}
+
+function selectAllCourses() {
+  return new Promise((resolve, reject) => {
+      connect().then(db => {
+          if (!db) {
+              console.error("Failed to connect to the database.");
+              reject("Failed to connect to the database.");
+              return;
+          }
+
+          const selectQuery = "SELECT name FROM Courses";
+
+          db.all(selectQuery, [], (err, rows) => {
+              if (err) {
+                  console.error(err.message);
+                  reject(err);
+              } else {
+                  const array = rows.map(row => row.name);
+                  resolve(array);
+              }
+              db.close();
+          });
+      }).catch(reject);
+  });
+}
 
 
+
+
+//print to console
 
 // Example usage:
 selectAllLanguages().then(languages => {
@@ -91,8 +143,20 @@ selectAllMajors().then(majors => {
 });
 
 
+// Example usage:
+selectAllInterests().then(interests => {
+  console.log("Interests:", interests);
+}).catch(error => {
+  console.error("Error:", error);
+});
 
 
+// Example usage:
+selectAllCourses().then(courses => {
+  console.log("Courses:", courses);
+}).catch(error => {
+  console.error("Error:", error);
+});
 
 
 
