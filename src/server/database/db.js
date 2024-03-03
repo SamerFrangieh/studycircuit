@@ -123,6 +123,30 @@ function selectAllCourses() {
   });
 }
 
+function selectAllStudents() {
+  return new Promise((resolve, reject) => {
+      connect().then(db => {
+          if (!db) {
+              console.error("Failed to connect to the database.");
+              reject("Failed to connect to the database.");
+              return;
+          }
+
+          const selectQuery = "SELECT first_name FROM Students";
+
+          db.all(selectQuery, [], (err, rows) => {
+              if (err) {
+                  console.error(err.message);
+                  reject(err);
+              } else {
+                  const array = rows.map(row => row.name);
+                  resolve(array);
+              }
+              db.close();
+          });
+      }).catch(reject);
+  });
+}
 
 
 
@@ -159,6 +183,13 @@ selectAllCourses().then(courses => {
   console.error("Error:", error);
 });
 
+// Example usage:
+selectAllStudents().then(students => {
+  console.log("Students:", students);
+}).catch(error => {
+  console.error("Error:", error);
+});
+
 
 
 function insertStudent(temporaryStorage) {
@@ -172,10 +203,10 @@ function insertStudent(temporaryStorage) {
 
           // Assuming `Students` table has columns like id, name, major, etc.
           // and `student` is an object with properties matching those column names.
-          const insertQuery = `INSERT INTO Students (first_name, last_name, email, password, major, language) VALUES (, ?, ?, ?, ?, ?)`;
+          const insertQuery = `INSERT INTO Students (first_name, last_name, email, password, major, language) VALUES (?, ?, ?, ?, ?, ?)`;
 
           // Using the properties of the student object as parameters for the INSERT query.
-          db.run(insertQuery, [student.name, student.age, student.major, student.interest], function(err) {
+          db.run(insertQuery, [temporaryStorage.firstname, temporaryStorage.lastname, temporaryStorage.email, temporaryStorage.password,temporaryStorage.major, temporaryStorage.languages[0] ], function(err) {
               if (err) {
                   console.error(err.message);
                   reject(err);
@@ -199,5 +230,8 @@ module.exports = {
     selectAllMajors,
     selectAllInterests,
     selectAllCourses,
+    insertStudent,
   };
-  
+
+
+  //try
