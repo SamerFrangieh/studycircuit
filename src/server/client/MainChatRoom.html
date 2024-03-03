@@ -9,15 +9,21 @@
 <body>
     <h2>You are logged in as:</h2>
     <div id="registrationData"></div>
-    
+
     <script src="displayRegistrations.js"></script>
+    <script>
+        // Assuming your displayRegistrations.js defines a function like loadRegistrations
+        // Directly call that function here to execute it as soon as the script is loaded
+        if (typeof loadRegistrations === 'function') {
+            loadRegistrations();
+        }
+    </script>
 
     <form id="loadInfo">
         <div class="displayInfo">
             <a href="StudyCircuit.html"><br>Logout</a>
         </div>
     </form>
-    
+
 </body>
 </html>
-
