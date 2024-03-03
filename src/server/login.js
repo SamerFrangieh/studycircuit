@@ -21,7 +21,7 @@ function handleLogin(request, response) {
             if (loginData.username && loginData.password) {
                 // For now, just check if the fields are not empty
                 response.writeHead(200, { "Content-Type": "application/json" });
-                response.end(JSON.stringify({ redirect: "/MainChatroom.html" }));
+                response.end(JSON.stringify({ redirect: "/MainChatRoom.html" }));
             } else {
                 // Invalid login attempt
                 response.writeHead(400, { "Content-Type": "application/json" });
