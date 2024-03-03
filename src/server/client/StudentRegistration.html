@@ -92,7 +92,7 @@
         document.getElementById('courses').addEventListener('change', function() {
           var selectedOptions = this.selectedOptions;
           var requiredNumber = 5;
-          if (selectedOptions.length < requiredNumber) {
+          if (selectedOptions.length !== requiredNumber) {
               // Deselect the last selected option if the maximum is exceeded
               selectedOptions[selectedOptions.length - 1].selected = false;
               alert('You can select a maximum of ' + requiredNumber + ' courses.');
