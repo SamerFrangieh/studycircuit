@@ -9,21 +9,20 @@ body {
   font-family: 'Open Sans', Arial, sans-serif;
 }
 
-.container {
-  background-color: lightgrey;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px; /* Consider adjusting or removing this to better center your container */
-  /* Add a max-width or width if you want to control the width of the container */
-  max-width: 600px; /* Example width */
-  width: 100%; /* Ensures container width is responsive */
+.container{
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  margin-top: 60px;
+  position: relative;
 }
   
   h2 {
     color: #333;
     /* Darker font color for the heading */
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
   }
   
@@ -34,10 +33,15 @@ body {
   }
   
   .btn-primary {
-    background-color: #0056b3;
-    /* Custom primary button color */
-    border-color: #004085;
-    /* Custom border color for the primary button */
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
   }
   
   .btn-primary:hover {
