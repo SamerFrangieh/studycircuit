@@ -15,14 +15,14 @@ body {
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
-  margin-top: 40px;
+  margin-top: 60px;
   position: relative;
 }
   
   h2 {
     color: #333;
     /* Darker font color for the heading */
-    margin-bottom: 10px;
+
     text-align: center;
   }
   
