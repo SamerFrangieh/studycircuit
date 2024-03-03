@@ -2,13 +2,14 @@
 const http = require("http") //need to http
 const fs = require("fs") //need to read and write files
 const url = require("url") //to parse url strings
+const path = require("path")
 
 
 const { handleRegistration } = require("./registration");
 const { handleLogin } = require("./login");
 const {temporaryStorage } = require("./registration");
 
-const ROOT_DIR = "client" //dir to serve static files from
+const ROOT_DIR = path.join(__dirname, "client") //dir to serve static files from
 
 const MIME_TYPES = {
   css: "text/css",
