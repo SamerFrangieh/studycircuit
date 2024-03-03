@@ -172,7 +172,7 @@ function insertStudent(temporaryStorage) {
 
           // Assuming `Students` table has columns like id, name, major, etc.
           // and `student` is an object with properties matching those column names.
-          const insertQuery = `INSERT INTO Students (first_name, last_name, email, password, major, language) VALUES (, ?, ?, ?, ?, ?)`;
+          const insertQuery = `INSERT INTO Students (first_name, last_name, email, password, major, language) VALUES (?, ?, ?, ?, ?, ?)`;
 
           // Using the properties of the student object as parameters for the INSERT query.
           db.run(insertQuery, [temporaryStorage.firstname, temporaryStorage.lastname, temporaryStorage.email, temporaryStorage.password,temporaryStorage.major, temporaryStorage.languages[0] ], function(err) {
