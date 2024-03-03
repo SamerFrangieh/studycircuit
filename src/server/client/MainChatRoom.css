@@ -1,7 +1,7 @@
 .btn-logout {
     display: inline-block;
     padding: 10px 15px;
-    background-color: #f44;
+    background-color: #007bff;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -9,5 +9,6 @@
 }
 
 .btn-logout:hover {
-    background-color: #c33;
+    background-color: #003d73;
+    border-color: #003157;
 }
