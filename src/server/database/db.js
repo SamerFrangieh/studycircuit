@@ -132,7 +132,7 @@ function selectAllStudents() {
               return;
           }
 
-          const selectQuery = "SELECT firstname FROM Students";
+          const selectQuery = "SELECT first_name FROM Students";
 
           db.all(selectQuery, [], (err, rows) => {
               if (err) {
