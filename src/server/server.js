@@ -3,10 +3,60 @@ const http = require("http") //need to http
 const fs = require("fs") //need to read and write files
 const url = require("url") //to parse url strings
 const path = require("path")
+const express = require('express');
+const cors = require('cors');
+const { createServer } = require('http');
 
+const { selectAllLanguages, selectAllMajors, selectAllInterests, selectAllCourses } = require('./database/db');
 
 const { handleRegistration, temporaryStorage } = require("./registration");
 const { handleLogin } = require("./login");
+
+// Setup Express for APIs
+const app = express();
+app.use(cors()); // Use CORS middleware to allow cross-origin requests
+
+//Define API endpoints
+app.get('/api/languages', async (req, res) => {
+    try {
+        const languages = await selectAllLanguages();
+        res.json(languages);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+// Repeat for other endpoints
+app.get('/api/majors', async (req, res) => {
+    try {
+        const majors = await selectAllMajors();
+        res.json(majors);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+
+app.get('/api/interests', async (req, res) => {
+    try {
+        const interests = await selectAllInterests();
+        res.json(interests);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+app.get('/api/courses', async (req, res) => {
+    try {
+        const courses = await selectAllCourses();
+        res.json(courses);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+// Create an Express server for API handling
+const apiServer = createServer(app);
 
 const ROOT_DIR = path.join(__dirname, "client") //dir to serve static files from
 
@@ -36,7 +86,7 @@ function get_mime(filename) {
   return MIME_TYPES["txt"]
 }
 
-http.createServer(function(request, response) {
+const httpServer = http.createServer(function(request, response) {
     var urlObj = url.parse(request.url, true, false);
 
     // Log basic request info
@@ -78,6 +128,7 @@ http.createServer(function(request, response) {
       } 
     else if (request.method === "GET") {
         // Handle static file serving for GET requests
+        console.log('ABVOGJOIGJROÈ', urlObj.pathname)
         var filePath = ROOT_DIR + (urlObj.pathname === "/" ? "/StudyCircuit.html" : urlObj.pathname);
 
         fs.readFile(filePath, function(err, data) {
@@ -97,7 +148,12 @@ http.createServer(function(request, response) {
         response.writeHead(405);
         response.end(JSON.stringify({error: "Method Not Allowed"}));
     }
-}).listen(3000);
+})
+
+// Listen on separate ports
+httpServer.listen(3000, () => console.log('HTTP Server running on port 3000'));
+apiServer.listen(3001, () => console.log('API Server running on port 3001'));
+
 
 
   console.log("Server Running at PORT 3000  CNTL-C to quit")

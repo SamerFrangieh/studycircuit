@@ -1,0 +1,63 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center; /* Center align the content for a modern look */
+  }
+  
+  h2 {
+    color: #0056b3;
+  }
+  
+  .btn-logout {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer; /* Make it clear that it's clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .btn-logout:hover {
+    background-color: #0056b3; /* Slightly lighter hover effect for better UI */
+  }
+  
+  nav {
+    font-family: 'Arial', sans-serif;
+    margin-top: 30px; /* Add some space above the navigation */
+  }
+  
+  nav a {
+    display: inline-block;
+    margin: 0 10px; /* Add space between navigation links */
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    padding: 1em;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  nav a:hover {
+    background-color: lightgreen;
+    color: darkgreen;
+  }
+  
+  #registrationData {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    display: none; /* Initially hide it; display it when registrations are loaded */
+  }
+  
+  .displayInfo {
+    margin-top: 40px;
+  }
+  
