@@ -132,7 +132,7 @@ function selectAllStudents() {
               return;
           }
 
-          const selectQuery = "SELECT name FROM Students";
+          const selectQuery = "SELECT firstname FROM Students";
 
           db.all(selectQuery, [], (err, rows) => {
               if (err) {
@@ -232,4 +232,6 @@ module.exports = {
     selectAllCourses,
     insertStudent,
   };
-  
+
+
+  //try
