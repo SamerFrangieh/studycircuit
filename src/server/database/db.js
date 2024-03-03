@@ -161,6 +161,39 @@ selectAllCourses().then(courses => {
 
 
 
+function insertStudent(temporaryStorage) {
+  return new Promise((resolve, reject) => {
+      connect().then(db => {
+          if (!db) {
+              console.error("Failed to connect to the database.");
+              reject("Failed to connect to the database.");
+              return;
+          }
+
+          // Assuming `Students` table has columns like id, name, major, etc.
+          // and `student` is an object with properties matching those column names.
+          const insertQuery = `INSERT INTO Students (first_name, last_name, email, password, major, language) VALUES (, ?, ?, ?, ?, ?)`;
+
+          // Using the properties of the student object as parameters for the INSERT query.
+          db.run(insertQuery, [student.name, student.age, student.major, student.interest], function(err) {
+              if (err) {
+                  console.error(err.message);
+                  reject(err);
+              } else {
+                  // "this" refers to the statement object that has executed the query.
+                  // "lastID" is a property of "this" when an INSERT operation is performed,
+                  // representing the last inserted row ID.
+                  console.log(`A row has been inserted with rowid ${this.lastID}`);
+                  resolve(this.lastID);
+              }
+              db.close();
+          });
+      }).catch(reject);
+  });
+}
+
+
+
 module.exports = {
     selectAllLanguages,
     selectAllMajors,
