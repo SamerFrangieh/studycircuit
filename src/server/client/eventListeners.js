@@ -4,14 +4,28 @@ document.addEventListener("DOMContentLoaded", function() {
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
+        // Collecting checkbox values for interests
+        const interests = [];
+        document.querySelectorAll('#interestsSelection .form-check-input:checked').forEach(function(checkbox) {
+            interests.push(checkbox.value);
+        });
+
+        // Collecting checkbox values for courses
+        const courses = [];
+        document.querySelectorAll('#courseSelection .form-check-input:checked').forEach(function(checkbox) {
+            courses.push(checkbox.value);
+        });
+
+        // Updated formData to include interests and courses
         const formData = {
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
             email: document.getElementById('email').value,
-            password: document.getElementById('password').value, // Include password here
+            password: document.getElementById('password').value, // Assuming password is included in your form
             languages: Array.from(document.getElementById('languages').selectedOptions).map(option => option.value),
             major: document.getElementById('major').value,
-            courses: Array.from(document.getElementById('courses').selectedOptions).map(option => option.value),
+            interests: interests, // Added interests
+            courses: courses, // Updated courses to be collected from checkboxes
         };
 
         try {
@@ -31,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -68,5 +83,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-
