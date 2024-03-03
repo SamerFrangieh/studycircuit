@@ -4,9 +4,8 @@ const fs = require("fs") //need to read and write files
 const url = require("url") //to parse url strings
 
 
-const { handleRegistration } = require("./registration");
+const { handleRegistration, temporaryStorage } = require("./registration");
 const { handleLogin } = require("./login");
-const {temporaryStorage } = require("./registration");
 
 const ROOT_DIR = "client" //dir to serve static files from
 
