@@ -5,9 +5,8 @@ const url = require("url") //to parse url strings
 const path = require("path")
 
 
-const { handleRegistration } = require("./registration");
+const { handleRegistration, temporaryStorage } = require("./registration");
 const { handleLogin } = require("./login");
-const {temporaryStorage } = require("./registration");
 
 const ROOT_DIR = path.join(__dirname, "client") //dir to serve static files from
 
