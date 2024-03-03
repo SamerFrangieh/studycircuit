@@ -3,7 +3,9 @@ const http = require("http") //need to http
 const fs = require("fs") //need to read and write files
 const url = require("url") //to parse url strings
 
+
 const { handleRegistration } = require("./registration");
+const { handleLogin } = require("./login");
 
 const ROOT_DIR = "client" //dir to serve static files from
 
@@ -50,20 +52,15 @@ http.createServer(function(request, response) {
     })
 
     //If it is a POST request then we will check the data.
-    // if (request.method === "POST") {
-    //     //Do this for all POST messages
-    //     var dataObj = JSON.parse(receivedData)
-    //     console.log("received data object: ", dataObj)
-    //     console.log("type: ", typeof dataObj)
-    //     console.log("USER REQUEST: " + dataObj.text)
-    //     var returnObj = {}
-    //     returnObj.text = "NOT FOUND: " + dataObj.text
-    //     }
-
     if (request.method === "POST" && urlObj.pathname === "/register") {
         // Handle POST /register requests
+        console.log("In the registration post branch")
         handleRegistration(request, response);
     } 
+    else if (request.method === "POST" && urlObj.pathname === "/login") {
+        console.log("In the login post branch")
+        handleLogin(request, response);
+    }
     else if (request.method === "POST") {
         //Not found or unknown POST request
         var returnObj = {};

@@ -13,7 +13,7 @@ The Student Collaboration Platform is a web-based application designed to match 
 
 ### Our Team
 
+- Malik Maadarani
 - Ibraheem Refai
 - Samer Frangieh
 - Aly Matrawy
-- Malik Maadrani
