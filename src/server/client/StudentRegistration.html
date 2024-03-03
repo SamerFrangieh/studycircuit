@@ -85,11 +85,11 @@
       
       <script>
         document.getElementById('interestsSelection').addEventListener('change', function(e) {
-          const maxAllowed = 3;
+          const requiredNumber = 3;
           const checkedCheckboxes = document.querySelectorAll('#interestsSelection .form-check-input:checked');
           
-          if (checkedCheckboxes.length > maxAllowed) {
-              alert('You can select a maximum of ' + maxAllowed + ' interests.');
+          if (checkedCheckboxes.length < requiredNumber) {
+              alert('You can select a maximum of ' + requiredNumber + ' interests.');
               e.target.checked = false; // Deselect the last checked box
           }
       });
@@ -128,11 +128,11 @@
       <script>
         document.getElementById('courses').addEventListener('change', function() {
           var selectedOptions = this.selectedOptions;
-          var maxAllowed = 5;
-          if (selectedOptions.length > maxAllowed) {
+          var requiredNumber = 5;
+          if (selectedOptions.length < requiredNumber) {
               // Deselect the last selected option if the maximum is exceeded
               selectedOptions[selectedOptions.length - 1].selected = false;
-              alert('You can select a maximum of ' + maxAllowed + ' courses.');
+              alert('You can select a maximum of ' + requiredNumber + ' courses.');
           }
       });
       </script>
