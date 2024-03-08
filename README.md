@@ -6,12 +6,12 @@ The Student Collaboration Platform is a web-based application designed to match 
 
 ## Built With
 
-- [SQLite]
-- [HTML/CSS]
-- [Express.js]
-- [JavaScript]
-- [Bootstrap]
-- Hosted on [Render]
+- SQLite
+- HTML/CSS
+- Express.js
+- JavaScript
+- Bootstrap
+- Hosted on Render
 
 ### Our Team
 
